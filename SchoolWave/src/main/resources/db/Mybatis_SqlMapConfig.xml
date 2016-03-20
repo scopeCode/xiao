@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<mappers>
+	    <mapper resource="db/web/mybatis/member/t_t_member_point_level.xml" />
+	    <mapper resource="db/web/mybatis/member/t_t_member.xml" />
+	    <mapper resource="db/web/mybatis/member/t_t_member_tj.xml" />
+	    <mapper resource="db/web/mybatis/member/t_t_member_config.xml" />
+	    <mapper resource="db/web/mybatis/goods/t_t_goods.xml" />
+	    <mapper resource="db/web/mybatis/goods/t_t_goods_stock.xml" />
+	    <mapper resource="db/web/mybatis/goods/t_t_goods_tj.xml" />
+	</mappers>
+</configuration>
