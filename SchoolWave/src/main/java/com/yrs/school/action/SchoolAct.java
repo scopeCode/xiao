@@ -26,10 +26,30 @@ public class SchoolAct {
 				,HttpServletRequest request
 				,HttpServletResponse response
 				) {
-		String errors = "有错误。";
+		String errors = "";
 		if(errors.length() >0){
 			return "redirect:v_login";
 		}
 		return "redirect:v_index";
+	}
+	
+	@RequestMapping(value = "/v_tpl_index", method = RequestMethod.GET)
+	public String v_tpl_index(String a,HttpServletRequest request,HttpServletResponse response) {
+		return "/index/index";
+	}
+	
+	@RequestMapping(value = "/v_tpl_header", method = RequestMethod.GET)
+	public String v_tpl_header(String a,HttpServletRequest request,HttpServletResponse response) {
+		return "/common/header";
+	}
+	
+	@RequestMapping(value = "/v_tpl_footer", method = RequestMethod.GET)
+	public String v_tpl_footer(String a,HttpServletRequest request,HttpServletResponse response) {
+		return "/common/footer";
+	}
+	
+	@RequestMapping(value = "/v_tpl_sidebar", method = RequestMethod.GET)
+	public String v_tpl_sidebar(String a,HttpServletRequest request,HttpServletResponse response) {
+		return "/common/sidebar";
 	}
 }
