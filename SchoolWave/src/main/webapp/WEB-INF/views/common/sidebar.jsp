@@ -3,34 +3,34 @@
 <ul class="page-sidebar-menu  page-header-fixed page-sidebar-menu-hover-submenu" 
 	data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
          <li class="nav-item   active open">
-             <a href="#/finance.html" class="nav-link nav-toggle">
+             <a href="javascript:void(0)" class="nav-link nav-toggle">
                  <i class="icon-wallet"></i>
                  <span class="title">课程报名</span>
                  <span class="arrow open"></span>
              </a>
              <ul class="sub-menu">
                  <li class="nav-item active open">
-                     <a href="javascript:void(0);" class="nav-link">
+                     <a href="" class="nav-link">
                          <span class="title ">新生报名</span>
                          <span class="selected"></span>
                      </a>
                  </li>
                   <li class="nav-item  ">
-                     <a href="javascript:void(0);" class="nav-link ">
+                     <a href="" class="nav-link ">
                          <span class="title">学员报名</span>
                      </a>
                  </li>
              </ul>
          </li> 
          <li class="nav-item  ">
-             <a href="#/member.html" class="nav-link nav-toggle">
+             <a href="javascript:void(0)" class="nav-link nav-toggle">
                  <i class="icon-users"></i>
                  <span class="title">班级管理</span>
                  <span class="arrow"></span>
              </a>
              <ul class="sub-menu">
                  <li class="nav-item  ">
-                     <a href="javascript:void(0);" class="nav-link ">
+                     <a href="#/class_index.html" class="nav-link ">
                          <span class="title">创建班级</span>
                      </a>
                  </li>

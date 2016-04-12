@@ -12,7 +12,7 @@
 		<head>
 		<meta charset="utf-8"/>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title  data-ng-bind="$state.current.data.pageTitle+' | 门庭CRM'"></title>
+		<title  data-ng-bind="$state.current.data.pageTitle+' | 名校'"></title>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
 		<meta content="" name="description"/>
@@ -30,7 +30,7 @@
 				String host 		=	request.getServerName();
 				int    port			=	request.getLocalPort();
 
-				if(host.contains("192") || host.contains("localhost")||host.contains("123")){
+				if(host.contains("192") || host.contains("localhost")){
 					if(port!=80){
 						domain  	= "http://"+host+":" + port + "/";
 					}else{
@@ -83,7 +83,7 @@
 	        .page-list .page-total select {width: 50px;}
 	    </style>	
 		</head>
-		<body class="page-header-fixed page-sidebar-closed-hide-logo page-container-bg-solid">
+		<body ng-controller="AppController"  class="page-header-fixed page-sidebar-closed-hide-logo page-container-bg-solid">
 		
 		<input value='<fmt:formatDate pattern="yyyy-MM-dd" value="<%=new java.util.Date()%>" />' 
 			id='sysCurrentDate' style='display: none;'>
@@ -91,7 +91,7 @@
 		<input value='<fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="<%=new java.util.Date()%>" />' 
 			id='sysCurrentDateTime' style='display: none;'>
 			
-		<div ng-spinner-bar class="page-spinner-bar" ng-spinner-bar>
+		<div ng-spinner-bar class="page-spinner-bar hide" >
 			<div class="bounce1"></div>
 			<div class="bounce2"></div>
 			<div class="bounce3"></div>
@@ -193,37 +193,12 @@
 			        return "";
 			    }//get end
 			}
-
-			/**
-			* 针对商品名称点击 跳转到详情页面的处理
-			*/
-			function 	jumpToGoodsDetailPage(_this){
-				var cur 	=	$(_this);
-				var goodsNo =   cur.attr('goodsNo'),
-					modalId =   cur.attr('modalId');
-				if(modalId){$('#'+modalId).modal('hide');}
-				window.location.href="#/goods-detail.html?goodsNo="+goodsNo;
-			}
-
 			Array.prototype.extend = function (other_array) {
 				var _this = this;
 				$.each(other_array,function(i,v){
 					_this.push(v);
 				});
 			}
-			/**
-			 * 折扣的判定  全局调用这个
-			 */
-			function discountCheck(discount) {
-				var  res = true;
-				if(!/^(\d+\.\d{1,1}|\d+)$/.test(discount)){
-				    message.error("请输入1-10的数,可以保留1位小数"); res = false;
-				}
-				if(parseInt(discount) > 10){
-				    message.error("不可大于10"); res = false;
-				}
-				return res;
-			};
 			/**
 			 * 时间格式化 解决浏览器差异的bug
 			 */

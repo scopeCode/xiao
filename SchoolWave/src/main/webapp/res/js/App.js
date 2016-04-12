@@ -12,7 +12,6 @@ var YunKerApp = angular.module("YunKerApp", [
 //"oc.lazyLoad" 的处理
 YunKerApp.config(['$ocLazyLoadProvider','$httpProvider', function($ocLazyLoadProvider,$httpProvider) {
     $ocLazyLoadProvider.config({});
-    //$httpProvider.interceptors.push('authInterceptor');
 }]);
 
 
@@ -34,19 +33,15 @@ YunKerApp.factory('settings', ['$rootScope', function($rootScope) {
     return settings;
 }]);
 
+/* Setup App Main Controller */
+YunKerApp.controller('AppController', ['$scope', '$rootScope','$location','$http','$state','settings',
+                                       function($scope, $rootScope,$location,$http,$state,settings) {
+}]);
+
 /* Setup Layout Part - Header */
 YunKerApp.controller('HeaderController', ['$scope', function($scope) {
     $scope.$on('$includeContentLoaded', function() {
         Layout.initHeader();
-    });
-}]);
-
-YunKerApp.controller('HeaderMenuController', ['$scope','$location', function($scope, $location) {
-	//定义顶部的 菜单信息
-    $scope.menus = [];
-    //监听如果中间内容加载完成后,是否有新的菜单产生;
-    $scope.$on("HeadMenuChange",function(event,menus){
-        $scope.menus = menus;
     });
 }]);
 
@@ -85,6 +80,63 @@ YunKerApp.config(['$stateProvider','$urlRouterProvider',function($stateProvider,
             templateUrl: "v_tpl_index",
             data: {
                 pageTitle: '__首页__',hasChildMenu:false,pageFlag:'index.html'
+            },
+            resolve: {
+                deps: ['$ocLazyLoad','settings', function($ocLazyLoad,settings) {
+	            	 return $ocLazyLoad.load([
+	                     {
+	                          name: 'YunKerApp',
+	                          files: [
+	                                  	settings.staticUrl + 'assets/pages/css/about.min.css'
+	                          ]
+	                     }
+                    ]);
+                }]
+            }
+        })
+        .state('class_index', {
+            url: "/class_index.html",
+            templateUrl: "class/v_tpl_index",
+            data: {
+                pageTitle: '班级管理',hasChildMenu:false,pageFlag:'class_index.html'
+            },
+            resolve: {
+                deps: ['$ocLazyLoad','settings', function($ocLazyLoad,settings) {
+	            	 return $ocLazyLoad.load([
+	                     {
+	                          name: 'YunKerApp',
+	                          files: [
+	                                  	settings.staticUrl + 'assets/pages/css/about.min.css'
+	                          ]
+	                     }
+                    ]);
+                }]
+            }
+        }) 
+        .state('new_date_class', {
+            url: "/new_date_class.html",
+            templateUrl: "class/v_tpl_date_index",
+            data: {
+                pageTitle: '班级管理-按期创建班级',hasChildMenu:false,pageFlag:'new_date_class.html'
+            },
+            resolve: {
+                deps: ['$ocLazyLoad','settings', function($ocLazyLoad,settings) {
+	            	 return $ocLazyLoad.load([
+	                     {
+	                          name: 'YunKerApp',
+	                          files: [
+	                                  	settings.staticUrl + 'assets/pages/css/about.min.css'
+	                          ]
+	                     }
+                    ]);
+                }]
+            }
+        })
+        .state('new_times_class', {
+            url: "/new_times_class.html",
+            templateUrl: "class/v_tpl_times_index",
+            data: {
+                pageTitle: '班级管理-按次创建班级',hasChildMenu:false,pageFlag:'new_times_class.html'
             },
             resolve: {
                 deps: ['$ocLazyLoad','settings', function($ocLazyLoad,settings) {
