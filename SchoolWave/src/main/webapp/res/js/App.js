@@ -36,6 +36,106 @@ YunKerApp.factory('settings', ['$rootScope', function($rootScope) {
 /* Setup App Main Controller */
 YunKerApp.controller('AppController', ['$scope', '$rootScope','$location','$http','$state','settings',
                                        function($scope, $rootScope,$location,$http,$state,settings) {
+	 $scope.$on('$viewContentLoaded', function() {
+		 var data =  $state.current.data;
+		 if(data){
+				$scope.currentKey = data.key;
+				//左侧导航的 arr
+				$scope.leftMenus =[];
+				//初始化设定 左侧的导航条的数据
+				//课程管理
+				var lessonMan = {
+						ico:'icon-wallet',
+						text:'课程报名',
+						key:'lesson',
+						sub:[
+						     {
+						    	 text:'新生报名',
+						    	 subkey:'new',
+						    	 url:''
+						     },
+						     {
+						    	 text:'学员报名',
+						    	 subkey:'old',
+						    	 url:''
+						     }
+						]
+				};
+				//班级管理
+				var classMan = {
+						ico:'icon-users',
+						text:'班级管理',
+						key:'class',
+						sub:[
+						     {
+						    	 text:'创建班级',
+						    	 subkey:'index',
+						    	 url:'#/class_index.html'
+						     }
+						]
+				};
+				//财务管理
+				var financeMan = {
+						ico:'icon-briefcase',
+						text:'财务管理',
+						key:'finance',
+						sub:[
+						     {
+						    	 text:'订单记录',
+						    	 subkey:'order',
+						    	 url:''
+						     },
+						     {
+						    	 text:'日结对账',
+						    	 subkey:'day',
+						    	 url:''
+						     },
+						     {
+						    	 text:'日常支出',
+						    	 subkey:'out',
+						    	 url:''
+						     },
+						     {
+						    	 text:'财务分析',
+						    	 subkey:'tj',
+						    	 url:''
+						     }
+						]
+				};
+				//设置
+				var settingsMan = {
+						ico:'icon-settings',
+						text:'设置',
+						key:'settings',
+						sub:[
+						     {
+						    	 text:'开班批次',
+						    	 subkey:'',
+						    	 url:''
+						     },
+						     {
+						    	 text:'课程管理',
+						    	 subkey:'',
+						    	 url:''
+						     },
+						     {
+						    	 text:'日常支出',
+						    	 subkey:'',
+						    	 url:''
+						     },
+						     {
+						    	 text:'教材杂项',
+						    	 subkey:'',
+						    	 url:''
+						     }
+						]
+				};
+				$scope.leftMenus.push(lessonMan);
+				$scope.leftMenus.push(classMan);
+				$scope.leftMenus.push(financeMan);
+				$scope.leftMenus.push(settingsMan);
+			}
+	 });
 }]);
 
 /* Setup Layout Part - Header */
@@ -79,7 +179,7 @@ YunKerApp.config(['$stateProvider','$urlRouterProvider',function($stateProvider,
             url: "/index.html",
             templateUrl: "v_tpl_index",
             data: {
-                pageTitle: '__首页__',hasChildMenu:false,pageFlag:'index.html'
+                pageTitle: '首页',hasChildMenu:false,pageFlag:'index.html',key:'index',subkey:''
             },
             resolve: {
                 deps: ['$ocLazyLoad','settings', function($ocLazyLoad,settings) {
@@ -98,7 +198,7 @@ YunKerApp.config(['$stateProvider','$urlRouterProvider',function($stateProvider,
             url: "/class_index.html",
             templateUrl: "class/v_tpl_index",
             data: {
-                pageTitle: '班级管理',hasChildMenu:false,pageFlag:'class_index.html'
+                pageTitle: '班级管理',hasChildMenu:false,pageFlag:'class_index.html',key:'class',subkey:''
             },
             resolve: {
                 deps: ['$ocLazyLoad','settings', function($ocLazyLoad,settings) {
@@ -117,7 +217,7 @@ YunKerApp.config(['$stateProvider','$urlRouterProvider',function($stateProvider,
             url: "/new_date_class.html",
             templateUrl: "class/v_tpl_date_index",
             data: {
-                pageTitle: '班级管理-按期创建班级',hasChildMenu:false,pageFlag:'new_date_class.html'
+                pageTitle: '班级管理-按期创建班级',hasChildMenu:false,pageFlag:'new_date_class.html',key:'class',subkey:'date'
             },
             resolve: {
                 deps: ['$ocLazyLoad','settings', function($ocLazyLoad,settings) {
@@ -136,7 +236,7 @@ YunKerApp.config(['$stateProvider','$urlRouterProvider',function($stateProvider,
             url: "/new_times_class.html",
             templateUrl: "class/v_tpl_times_index",
             data: {
-                pageTitle: '班级管理-按次创建班级',hasChildMenu:false,pageFlag:'new_times_class.html'
+                pageTitle: '班级管理-按次创建班级',hasChildMenu:false,pageFlag:'new_times_class.html',key:'class',subkey:'times'
             },
             resolve: {
                 deps: ['$ocLazyLoad','settings', function($ocLazyLoad,settings) {
